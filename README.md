@@ -1,69 +1,84 @@
-# React + TypeScript + Vite
+# React Math Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive calculator built with React, TypeScript, and Tailwind CSS. Features both guided step-by-step and expression-based calculation modes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dual Input Modes**
+  - Step-by-step: Guided menu-driven interface
+  - Expression: Direct input (e.g., "5 + 3")
+- **Mathematical Operations**
+  - Addition (+)
+  - Subtraction (-)
+  - Division (/) with zero-division protection
+- **Modern UI**
+  - Responsive Tailwind CSS design
+  - Clean gradient background
+  - Interactive buttons with hover effects
+  - Error and result display areas
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React 19.1.1 + TypeScript 5.8.3
+- **Build Tool**: Vite 7.1.2
+- **Styling**: Tailwind CSS 3.4.17
+- **Linting**: ESLint 9.33.0 with React hooks plugin
+- **Type Checking**: TypeScript with strict configuration
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run linter
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── App.tsx          # Main app component
+├── Calculator.tsx   # Calculator logic and UI
+├── main.tsx        # React entry point
+├── App.css         # App-specific styles
+└── index.css       # Global styles
+```
+
+## Usage
+
+1. **Step-by-Step Mode**: Select operation type, then enter numbers sequentially
+2. **Expression Mode**: Type calculations directly (e.g., "10 / 2", "15 + 7")
+3. **Error Handling**: Validates input and prevents division by zero
+
+## Development
+
+The project uses modern React patterns:
+- Functional components with hooks
+- TypeScript for type safety
+- State management with useState
+- Conditional rendering for different modes
+- Event handling and form validation
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Run tests and linting
+4. Submit a pull request

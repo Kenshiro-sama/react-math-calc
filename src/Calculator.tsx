@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Calculator = () => {
-  const [mode, setMode] = useState('menu'); // 'menu', 'step-by-step', 'expression'
+        const [mode, setMode] = useState('menu'); // 'menu', 'step-by-step', 'expression' // 'initial', 'menu', 'step-by-step', 'expression' // 'initial', 'menu', 'step-by-step', 'expression' // 'menu', 'step-by-step', 'expression'
   const [currentStep, setCurrentStep] = useState(0);
   const [operation, setOperation] = useState('');
   const [num1, setNum1] = useState('');
@@ -12,6 +12,7 @@ const Calculator = () => {
 
   // Calculator operations
   const add = (x: number, y: number): number => x + y;
+const multiply = (x: number, y: number): number => x * y;
   const subtract = (x: number, y: number): number => x - y;
   const divide = (x: number, y: number): number | string => {
     if (y !== 0) {
@@ -21,10 +22,24 @@ const Calculator = () => {
     }
   };
 
-  const resetCalculator = () => {
+  const percentage = (x: number, y?: number): number => y !== undefined && !isNaN(y) ? (x / 100) * y : x / 100;
+
+    const squareRoot = (x: number): number | string => x >= 0 ? Math.sqrt(x) : 'Error: Negative number';
+
+  const power = (x: number, y: number): number => Math.pow(x, y);
+
+        const resetCalculator = () => {
     setMode('menu');
     setCurrentStep(0);
     setOperation('');
+    setNum1('');
+    setNum2('');
+    setExpression('');
+    setResult('');
+    setError('');
+  };
+
+  const resetInputsAndResult = () => {
     setNum1('');
     setNum2('');
     setExpression('');
@@ -36,9 +51,16 @@ const Calculator = () => {
     const number1 = parseFloat(num1);
     const number2 = parseFloat(num2);
 
-    if (isNaN(number1) || isNaN(number2)) {
-      setError('Please enter valid numbers!');
-      return;
+    if (operation === 'sqrt') {
+      if (isNaN(number1)) {
+        setError('Please enter a valid number for square root!');
+        return;
+      }
+    } else {
+      if (isNaN(number1) || isNaN(number2)) {
+        setError('Please enter valid numbers!');
+        return;
+      }
     }
 
     let calcResult: number | string;
@@ -57,20 +79,49 @@ const Calculator = () => {
         calcResult = divide(number1, number2);
         operationSymbol = '/';
         break;
+          case 'percentage':
+            operationSymbol = '%';
+            calcResult = percentage(number1, number2);
+            break;
+          case 'multiply':
+            calcResult = multiply(number1, number2);
+            operationSymbol = '*';
+            break;
+      case 'sqrt':
+        calcResult = squareRoot(number1);
+        operationSymbol = '√';
+        break;
+      case 'power':
+        calcResult = power(number1, number2);
+        operationSymbol = '^';
+        break;
       default:
         setError('Invalid operation!');
         return;
     }
 
-    setResult(`${number1} ${operationSymbol} ${number2} = ${calcResult}`);
-    setError('');
+          if (operation === 'sqrt') {
+          setResult(`${operationSymbol}${number1} = ${calcResult}`);
+        } else {
+          setResult(`${number1} ${operationSymbol} ${number2} = ${calcResult}`);
+        }   setError('');
   };
 
   const handleExpressionCalculation = () => {
     const parts = expression.split(/\s+/);
-    
-    if (parts.length !== 3) {
-      setError('Please enter in format: number operator number (e.g., 5 + 3)');
+
+    if (parts.length === 2 && parts[0].toLowerCase() === 'sqrt') {
+      const num = parseFloat(parts[1]);
+      if (isNaN(num)) {
+        setError('Please enter a valid number for square root!');
+        return;
+      }
+      const calcResult = squareRoot(num);
+      setResult(`√${num} = ${calcResult}`);
+      setError('');
+      return;
+    } else if (parts.length !== 3) {
+      setError('Please enter in format: number operator number (e.g., 5 + 3) or sqrt number (e.g., sqrt 9)');
       return;
     }
 
@@ -94,8 +145,17 @@ const Calculator = () => {
       case '/':
         calcResult = divide(num1, num2);
         break;
+              case '%':
+            calcResult = percentage(num1, num2);
+            break;
+          case '*':
+            calcResult = multiply(num1, num2);
+            break;
+      case '^':
+        calcResult = power(num1, num2);
+        break;
       default:
-        setError('Unsupported operator! Use +, -, or /');
+        setError('Unsupported operator! Use +, -, /, *, %, or ^');
         return;
     }
 
@@ -154,6 +214,30 @@ const Calculator = () => {
               3. Division (/)
             </button>
             <button
+              onClick={() => {setOperation('multiply'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              4. Multiplication (*)
+            </button>
+            <button
+              onClick={() => {setOperation('percentage'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              5. Percentage (%)
+            </button>
+                        <button
+              onClick={() => {setOperation('sqrt'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              6. Square Root (√)
+            </button>
+            <button
+              onClick={() => {setOperation('power'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              7. Power (^)
+            </button>
+            <button
               onClick={resetCalculator}
               className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
             >
@@ -163,10 +247,14 @@ const Calculator = () => {
         </div>
       );
     } else if (currentStep === 2) {
-      const operationNames = {
+            const operationNames = {
         add: 'Addition',
         subtract: 'Subtraction',
-        divide: 'Division'
+        divide: 'Division',
+        multiply: 'Multiplication',
+        percentage: 'Percentage',
+        sqrt: 'Square Root',
+        power: 'Power'
       };
 
       return (
@@ -185,16 +273,18 @@ const Calculator = () => {
                 placeholder="First number"
               />
             </div>
-            <div>
-              <label className="block text-gray-700 font-medium mb-2">Enter second number:</label>
-              <input
-                type="number"
-                value={num2}
-                onChange={(e) => setNum2(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Second number"
-              />
-            </div>
+            {operation !== 'sqrt' && (
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Enter second number:</label>
+                <input
+                  type="number"
+                  value={num2}
+                  onChange={(e) => setNum2(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Second number"
+                />
+              </div>
+            )}
             <div className="flex space-x-4">
               <button
                 onClick={handleStepByStepCalculation}
@@ -258,12 +348,12 @@ const Calculator = () => {
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Simple Math Calculator</h1>
             <div className="border-b-2 border-blue-500 w-16 mx-auto mb-4"></div>
-            <p className="text-gray-600">Operations: Addition (+), Subtraction (-), Division (/)</p>
+            <p className="text-gray-600">Operations: Addition (+), Subtraction (-), Division (/), Percentage (%)</p>
           </div>
 
           {/* Main Content */}
           <div className="mb-6">
-            {mode === 'menu' && renderMenu()}
+             {mode === 'menu' && renderMenu()}
             {mode === 'step-by-step' && renderStepByStep()}
             {mode === 'expression' && renderExpression()}
           </div>
@@ -287,7 +377,7 @@ const Calculator = () => {
           {(result || error) && (
             <div className="text-center">
               <button
-                onClick={resetCalculator}
+                onClick={resetInputsAndResult}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors"
               >
                 New Calculation
