@@ -26,7 +26,11 @@ const multiply = (x: number, y: number): number => x * y;
 
     const squareRoot = (x: number): number | string => x >= 0 ? Math.sqrt(x) : 'Error: Negative number';
 
-  const power = (x: number, y: number): number => Math.pow(x, y);
+    const power = (x: number, y: number): number => Math.pow(x, y);
+
+  const round = (x: number): number => Math.round(x);
+  const floor = (x: number): number => Math.floor(x);
+  const ceil = (x: number): number => Math.ceil(x);
 
         const resetCalculator = () => {
     setMode('menu');
@@ -51,9 +55,9 @@ const multiply = (x: number, y: number): number => x * y;
     const number1 = parseFloat(num1);
     const number2 = parseFloat(num2);
 
-    if (operation === 'sqrt') {
+    if (['sqrt', 'round', 'floor', 'ceil'].includes(operation)) {
       if (isNaN(number1)) {
-        setError('Please enter a valid number for square root!');
+        setError(`Please enter a valid number for ${operation}!`);
         return;
       }
     } else {
@@ -95,13 +99,25 @@ const multiply = (x: number, y: number): number => x * y;
         calcResult = power(number1, number2);
         operationSymbol = '^';
         break;
+      case 'round':
+        calcResult = round(number1);
+        operationSymbol = 'Round';
+        break;
+      case 'floor':
+        calcResult = floor(number1);
+        operationSymbol = 'Floor';
+        break;
+      case 'ceil':
+        calcResult = ceil(number1);
+        operationSymbol = 'Ceil';
+        break;
       default:
         setError('Invalid operation!');
         return;
     }
 
-          if (operation === 'sqrt') {
-          setResult(`${operationSymbol}${number1} = ${calcResult}`);
+          if (['sqrt', 'round', 'floor', 'ceil'].includes(operation)) {
+          setResult(`${operationSymbol}(${number1}) = ${calcResult}`);
         } else {
           setResult(`${number1} ${operationSymbol} ${number2} = ${calcResult}`);
         }   setError('');
@@ -110,14 +126,37 @@ const multiply = (x: number, y: number): number => x * y;
   const handleExpressionCalculation = () => {
     const parts = expression.split(/\s+/);
 
-    if (parts.length === 2 && parts[0].toLowerCase() === 'sqrt') {
+    if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil'].includes(parts[0].toLowerCase())) {
+      const operation = parts[0].toLowerCase();
       const num = parseFloat(parts[1]);
       if (isNaN(num)) {
-        setError('Please enter a valid number for square root!');
+        setError(`Please enter a valid number for ${operation}!`);
         return;
       }
-      const calcResult = squareRoot(num);
-      setResult(`√${num} = ${calcResult}`);
+      let calcResult: number | string;
+      let operationSymbol: string;
+      switch (operation) {
+        case 'sqrt':
+          calcResult = squareRoot(num);
+          operationSymbol = '√';
+          break;
+        case 'round':
+          calcResult = round(num);
+          operationSymbol = 'Round';
+          break;
+        case 'floor':
+          calcResult = floor(num);
+          operationSymbol = 'Floor';
+          break;
+        case 'ceil':
+          calcResult = ceil(num);
+          operationSymbol = 'Ceil';
+          break;
+        default:
+          setError('Invalid unary operation!');
+          return;
+      }
+      setResult(`${operationSymbol}(${num}) = ${calcResult}`);
       setError('');
       return;
     } else if (parts.length !== 3) {
@@ -232,10 +271,28 @@ const multiply = (x: number, y: number): number => x * y;
               6. Square Root (√)
             </button>
             <button
+              onClick={() => {setOperation('round'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              7. Round (e.g., Round 3.7 = 4)
+            </button>
+            <button
+              onClick={() => {setOperation('floor'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              8. Floor (e.g., Floor 3.7 = 3)
+            </button>
+            <button
+              onClick={() => {setOperation('ceil'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              9. Ceil (e.g., Ceil 3.2 = 4)
+            </button>
+                        <button
               onClick={() => {setOperation('power'); setCurrentStep(2);}}
               className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
             >
-              7. Power (^)
+              10. Power (^)
             </button>
             <button
               onClick={resetCalculator}
@@ -254,7 +311,10 @@ const multiply = (x: number, y: number): number => x * y;
         multiply: 'Multiplication',
         percentage: 'Percentage',
         sqrt: 'Square Root',
-        power: 'Power'
+        power: 'Power',
+        round: 'Round',
+        floor: 'Floor',
+        ceil: 'Ceil'
       };
 
       return (
@@ -273,7 +333,7 @@ const multiply = (x: number, y: number): number => x * y;
                 placeholder="First number"
               />
             </div>
-            {operation !== 'sqrt' && (
+            {['sqrt', 'round', 'floor', 'ceil'].includes(operation) ? null : (
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Enter second number:</label>
                 <input
@@ -346,9 +406,9 @@ const multiply = (x: number, y: number): number => x * y;
         <div className="bg-white rounded-xl shadow-lg p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Simple Math Calculator</h1>
+                        <h1 className="text-3xl font-bold text-gray-800 mb-2">Full-Featured Math Calculator</h1>
             <div className="border-b-2 border-blue-500 w-16 mx-auto mb-4"></div>
-            <p className="text-gray-600">Operations: Addition (+), Subtraction (-), Division (/), Percentage (%)</p>
+                        <p className="text-gray-600">Operations: Add (+), Subtract (-), Multiply (x), Divide (÷), Percentage (%), Square Root (√), Power (x^y), Round (R), Floor (F), Ceil (C)</p>
           </div>
 
           {/* Main Content */}
