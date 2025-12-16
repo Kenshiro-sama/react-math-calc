@@ -73,12 +73,14 @@ const multiply = (x: number, y: number): number => x * y;
     return Math.log(x); // Natural logarithm (base e)
   };
 
-  const log10 = (x: number): number | string => {
+    const log10 = (x: number): number | string => {
     if (x <= 0) {
       return 'Error: Logarithm is only defined for positive numbers';
     }
     return Math.log10(x); // Base 10 logarithm
   };
+
+  const exponential = (x: number): number => Math.exp(x);
 
   // Memory operations
   const handleMemoryClear = () => {
@@ -153,7 +155,7 @@ const multiply = (x: number, y: number): number => x * y;
     const number1 = parseFloat(num1);
     const number2 = parseFloat(num2);
 
-    if (['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10'].includes(operation)) {
+    if (['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10', 'exp'].includes(operation)) {
       if (isNaN(number1)) {
         setError(`Please enter a valid number for ${operation}!`);
         return;
@@ -237,12 +239,16 @@ const multiply = (x: number, y: number): number => x * y;
         calcResult = log10(number1);
         operationSymbol = 'log10';
         break;
+      case 'exp':
+        calcResult = exponential(number1);
+        operationSymbol = 'e^';
+        break;
       default:
         setError('Invalid operation!');
         return;
     }
 
-          if (['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10'].includes(operation)) {
+          if (['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp'].includes(operation)) {
           setResult(`${operationSymbol}(${number1}) = ${calcResult}`);
         } else {
           setResult(`${number1} ${operationSymbol} ${number2} = ${calcResult}`);
@@ -252,7 +258,7 @@ const multiply = (x: number, y: number): number => x * y;
   const handleExpressionCalculation = () => {
     const parts = expression.split(/\s+/);
 
-    if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10'].includes(parts[0].toLowerCase())) {
+    if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp'].includes(parts[0].toLowerCase())) {
       const operation = parts[0].toLowerCase();
       const num = parseFloat(parts[1]);
       if (isNaN(num)) {
@@ -305,6 +311,10 @@ const multiply = (x: number, y: number): number => x * y;
         case 'log10':
           calcResult = log10(num);
           operationSymbol = 'log10';
+          break;
+        case 'exp':
+          calcResult = exponential(num);
+          operationSymbol = 'e^';
           break;
         default:
           setError('Invalid unary operation!');
@@ -484,11 +494,17 @@ const multiply = (x: number, y: number): number => x * y;
             >
               16. Natural Logarithm (ln)
             </button>
-            <button
+                        <button
               onClick={() => {setOperation('log10'); setCurrentStep(2);}}
               className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
             >
               17. Logarithm Base 10 (log10)
+            </button>
+            <button
+              onClick={() => {setOperation('exp'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              18. Exponential (e^x)
             </button>
             <button
               onClick={resetCalculator}
@@ -517,7 +533,8 @@ const multiply = (x: number, y: number): number => x * y;
         cos: 'Cosine',
         tan: 'Tangent',
         log: 'Natural Logarithm',
-        log10: 'Logarithm Base 10'
+        log10: 'Logarithm Base 10',
+        exp: 'Exponential'
       };
 
       return (
@@ -611,7 +628,7 @@ const multiply = (x: number, y: number): number => x * y;
           <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-gray-800 mb-2">Full-Featured Math Calculator</h1>
             <div className="border-b-2 border-blue-500 w-16 mx-auto mb-4"></div>
-                                                                                                <p className="text-gray-600">Operations: Add (+), Subtract (-), Multiply (x), Divide (÷), Percentage (%), Square Root (√), Power (x^y), Round (R), Floor (F), Ceil (C), Factorial (!), Sine (sin), Cosine (cos), Tangent (tan), Natural Log (ln), Log Base 10 (log10)</p>
+                                                                                                                                                                                                <p className="text-gray-600">Operations: Add (+), Subtract (-), Multiply (x), Divide (÷), Percentage (%), Square Root (√), Power (x^y), Round (R), Floor (F), Ceil (C), Factorial (!), Sine (sin), Cosine (cos), Tangent (tan), Natural Log (ln), Log Base 10 (log10), Exponential (e^x)</p>
           </div>
 
           {/* Main Content */}
