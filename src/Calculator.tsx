@@ -82,6 +82,10 @@ const multiply = (x: number, y: number): number => x * y;
 
   const exponential = (x: number): number => Math.exp(x);
 
+  const degToRad = (deg: number): number => deg * (Math.PI / 180);
+
+  const radToDeg = (rad: number): number => rad * (180 / Math.PI);
+
   // Memory operations
   const handleMemoryClear = () => {
     setMemory(null);
@@ -155,7 +159,7 @@ const multiply = (x: number, y: number): number => x * y;
     const number1 = parseFloat(num1);
     const number2 = parseFloat(num2);
 
-    if (['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10', 'exp'].includes(operation)) {
+    if (['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10', 'exp', 'deg2rad', 'rad2deg'].includes(operation)) {
       if (isNaN(number1)) {
         setError(`Please enter a valid number for ${operation}!`);
         return;
@@ -243,12 +247,20 @@ const multiply = (x: number, y: number): number => x * y;
         calcResult = exponential(number1);
         operationSymbol = 'e^';
         break;
+      case 'deg2rad':
+        calcResult = degToRad(number1);
+        operationSymbol = 'deg→rad';
+        break;
+      case 'rad2deg':
+        calcResult = radToDeg(number1);
+        operationSymbol = 'rad→deg';
+        break;
       default:
         setError('Invalid operation!');
         return;
     }
 
-          if (['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp'].includes(operation)) {
+          if (['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp', 'deg2rad', 'rad2deg'].includes(operation)) {
           setResult(`${operationSymbol}(${number1}) = ${calcResult}`);
         } else {
           setResult(`${number1} ${operationSymbol} ${number2} = ${calcResult}`);
@@ -258,7 +270,7 @@ const multiply = (x: number, y: number): number => x * y;
   const handleExpressionCalculation = () => {
     const parts = expression.split(/\s+/);
 
-    if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp'].includes(parts[0].toLowerCase())) {
+    if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp', 'deg2rad', 'rad2deg'].includes(parts[0].toLowerCase())) {
       const operation = parts[0].toLowerCase();
       const num = parseFloat(parts[1]);
       if (isNaN(num)) {
@@ -315,6 +327,14 @@ const multiply = (x: number, y: number): number => x * y;
         case 'exp':
           calcResult = exponential(num);
           operationSymbol = 'e^';
+          break;
+        case 'deg2rad':
+          calcResult = degToRad(num);
+          operationSymbol = 'deg→rad';
+          break;
+        case 'rad2deg':
+          calcResult = radToDeg(num);
+          operationSymbol = 'rad→deg';
           break;
         default:
           setError('Invalid unary operation!');
@@ -507,6 +527,18 @@ const multiply = (x: number, y: number): number => x * y;
               18. Exponential (e^x)
             </button>
             <button
+              onClick={() => {setOperation('deg2rad'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              19. Degrees to Radians (deg→rad)
+            </button>
+            <button
+              onClick={() => {setOperation('rad2deg'); setCurrentStep(2);}}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            >
+              20. Radians to Degrees (rad→deg)
+            </button>
+            <button
               onClick={resetCalculator}
               className="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
             >
@@ -534,7 +566,9 @@ const multiply = (x: number, y: number): number => x * y;
         tan: 'Tangent',
         log: 'Natural Logarithm',
         log10: 'Logarithm Base 10',
-        exp: 'Exponential'
+        exp: 'Exponential',
+        deg2rad: 'Degrees to Radians',
+        rad2deg: 'Radians to Degrees'
       };
 
       return (
@@ -553,7 +587,7 @@ const multiply = (x: number, y: number): number => x * y;
                 placeholder="First number"
               />
             </div>
-            {['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10'].includes(operation) ? null : (
+            {['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10', 'deg2rad', 'rad2deg'].includes(operation) ? null : (
               <div>
                 <label className="block text-gray-700 font-medium mb-2">Enter second number:</label>
                 <input
@@ -628,7 +662,7 @@ const multiply = (x: number, y: number): number => x * y;
           <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-gray-800 mb-2">Full-Featured Math Calculator</h1>
             <div className="border-b-2 border-blue-500 w-16 mx-auto mb-4"></div>
-                                                                                                                                                                                                <p className="text-gray-600">Operations: Add (+), Subtract (-), Multiply (x), Divide (÷), Percentage (%), Square Root (√), Power (x^y), Round (R), Floor (F), Ceil (C), Factorial (!), Sine (sin), Cosine (cos), Tangent (tan), Natural Log (ln), Log Base 10 (log10), Exponential (e^x)</p>
+                                                                                                                                                                                                <p className="text-gray-600">Operations: Add (+), Subtract (-), Multiply (x), Divide (÷), Percentage (%), Square Root (√), Power (x^y), Round (R), Floor (F), Ceil (C), Factorial (!), Sine (sin), Cosine (cos), Tangent (tan), Natural Log (ln), Log Base 10 (log10), Exponential (e^x), Degrees to Radians (deg→rad), Radians to Degrees (rad→deg)</p>
           </div>
 
           {/* Main Content */}
