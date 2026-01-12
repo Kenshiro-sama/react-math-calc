@@ -55,7 +55,7 @@ const Calculator = () => {
         <div className={theme === 'cyberpunk' ? 'bg-gray-800 rounded-2xl shadow-xl p-8 border border-green-500' : 'bg-white rounded-2xl shadow-xl p-8 border border-gray-200'}>
           {/* Header */}
                     <div className="text-center mb-10">
-            <h1 className={theme === 'cyberpunk' ? 'text-4xl font-extrabold text-green-400 mb-3' : 'text-4xl font-extrabold text-gray-900 mb-3'}>Advanced Calculator</h1>
+                        <h1 className={theme === 'cyberpunk' ? 'text-4xl font-extrabold text-green-400 mb-3' : 'text-4xl font-extrabold text-gray-900 mb-3'}>Calculator</h1>
             <button
               onClick={() => setTheme(theme === 'default' ? 'cyberpunk' : 'default')}
               className={theme === 'cyberpunk' ? 'mb-6 px-4 py-2 bg-green-600 text-gray-900 font-bold rounded-full shadow-lg hover:bg-green-500 transition-colors duration-200' : 'mb-6 px-4 py-2 bg-indigo-600 text-white font-bold rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-200'}
