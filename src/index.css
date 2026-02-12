@@ -57,6 +57,156 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Cyberpunk Theme Enhancements */
+.cyberpunk-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Grid Background */
+.cyberpunk-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+  animation: grid-pulse 4s ease-in-out infinite;
+}
+
+/* Breathing Glow from Bottom */
+.cyberpunk-bg::after {
+  content: '';
+  position: fixed;
+  bottom: -50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, 
+    rgba(0, 240, 255, 0.4) 0%, 
+    rgba(255, 0, 255, 0.3) 30%,
+    rgba(0, 255, 0, 0.2) 60%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+  animation: breathing-glow 6s ease-in-out infinite;
+  filter: blur(60px);
+}
+
+/* Scanline Effect */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(0, 240, 255, 0.8) 50%, 
+    transparent 100%);
+  pointer-events: none;
+  z-index: 9999;
+  animation: scanline 8s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+}
+
+/* Data Stream Particles */
+.data-stream {
+  position: fixed;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(0, 240, 255, 0.8) 50%, 
+    transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+  animation: data-stream 3s linear infinite;
+  box-shadow: 0 0 5px rgba(0, 240, 255, 0.8);
+}
+
+.data-stream:nth-child(1) { left: 10%; animation-delay: 0s; }
+.data-stream:nth-child(2) { left: 25%; animation-delay: 0.5s; background: linear-gradient(to bottom, transparent 0%, rgba(255, 0, 255, 0.8) 50%, transparent 100%); box-shadow: 0 0 5px rgba(255, 0, 255, 0.8); }
+.data-stream:nth-child(3) { left: 40%; animation-delay: 1s; }
+.data-stream:nth-child(4) { left: 55%; animation-delay: 1.5s; background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 0, 0.8) 50%, transparent 100%); box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); }
+.data-stream:nth-child(5) { left: 70%; animation-delay: 2s; }
+.data-stream:nth-child(6) { left: 85%; animation-delay: 2.5s; background: linear-gradient(to bottom, transparent 0%, rgba(255, 0, 255, 0.8) 50%, transparent 100%); box-shadow: 0 0 5px rgba(255, 0, 255, 0.8); }
+
+/* Corner Accents */
+.corner-accent {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.corner-accent::before,
+.corner-accent::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(45deg, rgba(0, 240, 255, 0.6), transparent);
+}
+
+.corner-accent::before {
+  width: 2px;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.corner-accent::after {
+  width: 100%;
+  height: 2px;
+  left: 0;
+  top: 0;
+}
+
+.corner-accent.top-left { top: 0; left: 0; }
+.corner-accent.top-right { top: 0; right: 0; transform: rotate(90deg); }
+.corner-accent.bottom-left { bottom: 0; left: 0; transform: rotate(-90deg); }
+.corner-accent.bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+
+/* Holographic Shimmer */
+.holographic {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 240, 255, 0.1) 0%,
+    rgba(255, 0, 255, 0.1) 25%,
+    rgba(0, 255, 0, 0.1) 50%,
+    rgba(255, 0, 255, 0.1) 75%,
+    rgba(0, 240, 255, 0.1) 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic 3s ease infinite;
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes breathing-glow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

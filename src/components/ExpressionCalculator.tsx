@@ -17,17 +17,17 @@ const ExpressionCalculator: React.FC<ExpressionCalculatorProps> = ({
 }) => {
   return (
     <div className="text-center">
-      <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-green-400' : 'text-2xl font-bold mb-8 text-gray-800'}>Enter Your Expression:</h3>
+            <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-cyber-green to-cyber-magenta animate-neon-glow-multi' : 'text-2xl font-bold mb-8 text-gray-800'}>Enter Your Expression:</h3>
       <div className="space-y-5">
         <div>
-          <label className={theme === 'cyberpunk' ? 'block text-green-300 font-medium mb-2 text-left' : 'block text-gray-700 font-medium mb-2 text-left'}>
+          <label className={theme === 'cyberpunk' ? 'block text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-magenta font-medium mb-2 text-left' : 'block text-gray-700 font-medium mb-2 text-left'}>
             Input your mathematical expression (e.g., 5 + 3 * 2) or unary operation (e.g., sqrt 9, reciprocal 5):
           </label>
           <input
             type="text"
             value={expression}
             onChange={(e) => setExpression(e.target.value)}
-            className={theme === 'cyberpunk' ? 'w-full px-4 py-3 border border-green-500 bg-gray-800 text-green-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 shadow-sm' : 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'}
+            className={theme === 'cyberpunk' ? 'w-full px-4 py-3 border-2 border-cyber-purple bg-gray-900/80 text-cyber-purple rounded-xl focus:ring-2 focus:ring-cyber-cyan focus:border-cyber-cyan shadow-lg shadow-cyber-purple/20 backdrop-blur-sm transition-all duration-300 placeholder-cyber-purple/50' : 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'}
             placeholder="e.g., 10 / 2 + (3 * 4) or sin 90"
             onKeyPress={(e) => e.key === 'Enter' && handleExpressionCalculation()}
           />
@@ -35,15 +35,17 @@ const ExpressionCalculator: React.FC<ExpressionCalculatorProps> = ({
         <div className="flex space-x-4 mt-6">
           <button
             onClick={handleExpressionCalculation}
-            className={theme === 'cyberpunk' ? 'flex-1 bg-green-600 hover:bg-green-500 text-gray-900 font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md' : 'flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'flex-1 bg-gradient-to-r from-cyber-magenta to-cyber-purple hover:from-cyber-purple hover:to-cyber-magenta text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-cyber-magenta/50 hover:shadow-cyber-purple/50 relative overflow-hidden group' : 'flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
-            Evaluate Expression
+            {theme === 'cyberpunk' && <span className="absolute inset-0 bg-gradient-to-r from-cyber-cyan to-cyber-green opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></span>}
+            <span className="relative z-10">Evaluate Expression</span>
           </button>
           <button
             onClick={resetCalculator}
-            className={theme === 'cyberpunk' ? 'flex-1 bg-gray-700 hover:bg-gray-600 text-green-400 font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md' : 'flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'flex-1 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-cyber-cyan font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-gray-700/50 border border-cyber-cyan/30 relative overflow-hidden group' : 'flex-1 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
-            Back to Menu
+            {theme === 'cyberpunk' && <span className="absolute inset-0 bg-gradient-to-r from-cyber-cyan/20 to-cyber-magenta/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>}
+            <span className="relative z-10">Back to Menu</span>
           </button>
         </div>
       </div>
