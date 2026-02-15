@@ -120,7 +120,7 @@ button:focus-visible {
 .data-stream {
   position: fixed;
   width: 2px;
-  height: 100px;
+  height: 100vh;
   background: linear-gradient(to bottom, 
     transparent 0%, 
     rgba(0, 240, 255, 0.8) 50%, 
