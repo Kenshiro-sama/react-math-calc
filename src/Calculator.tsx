@@ -73,7 +73,7 @@ const Calculator = () => {
         </>
       )}
       <div className="max-w-lg w-full">
-        <div className={theme === 'cyberpunk' ? 'bg-gray-800 rounded-2xl shadow-xl p-8 border-2 border-green-500 animate-border-pulse-multi relative overflow-hidden holographic' : 'bg-white rounded-2xl shadow-xl p-8 border border-gray-200'}>
+          <div className={theme === 'cyberpunk' ? 'bg-gray-800 rounded-2xl shadow-xl p-8 border-2 border-green-500 animate-border-pulse-multi relative overflow-hidden holographic z-10' : 'bg-white rounded-2xl shadow-xl p-8 border border-gray-200'}>
           {/* Inner Glow Effect for Cyberpunk */}
           {theme === 'cyberpunk' && (
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-green-500/5 pointer-events-none rounded-2xl"></div>
