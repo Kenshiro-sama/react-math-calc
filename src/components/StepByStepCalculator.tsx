@@ -56,7 +56,7 @@ const StepByStepCalculator: React.FC<StepByStepCalculatorProps> = ({
   if (currentStep === 1) {
     return (
       <div className="text-center">
-                <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-cyber-green to-cyber-magenta animate-neon-glow-multi' : 'text-2xl font-bold mb-8 text-gray-800'}>Choose an Operation:</h3>
+                                <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-cyber-cyan animate-neon-glow-multi' : 'text-2xl font-bold mb-8 text-gray-800'}>Choose an Operation:</h3>
         <div className="grid grid-cols-2 gap-4">
           <button
             onClick={() => {setOperation('add'); setCurrentStep(2);}}
@@ -192,7 +192,7 @@ const StepByStepCalculator: React.FC<StepByStepCalculatorProps> = ({
   } else if (currentStep === 2) {
     return (
       <div className="text-center">
-                <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-cyber-green to-cyber-magenta animate-neon-glow-multi' : 'text-2xl font-bold mb-8 text-gray-800'}>
+                                <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-cyber-cyan animate-neon-glow-multi' : 'text-2xl font-bold mb-8 text-gray-800'}>
           {operationNames[operation]}
         </h3>
         <div className="space-y-5">

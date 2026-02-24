@@ -167,10 +167,7 @@ export default {
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
         'rotate-hue': 'rotate-hue 10s linear infinite',
       },
-      backgroundImage: {
-        'cyber-grid': 'linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px)',
-        'cyber-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%)',
-      },
+      backgroundImage: {},
       backgroundSize: {
         'grid': '50px 50px',
       },

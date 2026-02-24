@@ -46,11 +46,7 @@ body {
   left: 0;
   width: 200%;
   height: 200%;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(0, 255, 100, 0.08) 0%, transparent 60%);
-  animation: bg-aurora 15s ease-in-out infinite;
+  background: #0a0a0f;
   pointer-events: none;
   z-index: 0;
 }
@@ -63,12 +59,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(255, 0, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px, 40px 40px, 120px 120px, 120px 120px;
+  background-image: none;
   pointer-events: none;
   z-index: 1;
   animation: hyper-grid 8s linear infinite;
@@ -81,10 +72,7 @@ body {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    rgba(0, 240, 255, 0.9) 50%, 
-    transparent 100%);
+  background: rgba(0, 240, 255, 0.9);
   pointer-events: none;
   z-index: 9999;
   animation: scanline 4s linear infinite;
@@ -100,10 +88,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    rgba(255, 0, 255, 0.3) 50%, 
-    transparent 100%);
+  background: rgba(255, 0, 255, 0.3);
   animation: scanline-color 2s linear infinite;
 }
 
@@ -125,12 +110,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, 
-    transparent 0%, 
-    currentColor 20%,
-    rgba(255, 255, 255, 1) 50%,
-    currentColor 80%,
-    transparent 100%);
+  background: currentColor;
   filter: blur(1px);
 }
 
@@ -226,7 +206,7 @@ body {
 .corner-accent::after {
   content: '';
   position: absolute;
-  background: linear-gradient(45deg, #00f0ff, #ff00ff);
+  background: #00f0ff;
   box-shadow: 0 0 20px #00f0ff, 0 0 40px rgba(0, 240, 255, 0.5);
 }
 
@@ -270,16 +250,7 @@ body {
 
 /* Holographic Panel */
 .holographic {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 240, 255, 0.2) 0%,
-    rgba(255, 0, 255, 0.2) 25%,
-    rgba(0, 255, 100, 0.2) 50%,
-    rgba(255, 0, 100, 0.2) 75%,
-    rgba(0, 240, 255, 0.2) 100%
-  );
-  background-size: 400% 400%;
-  animation: holographic 2s ease infinite;
+  background: rgba(0, 240, 255, 0.2);
   border: 1px solid rgba(0, 240, 255, 0.5);
   box-shadow: 
     0 0 30px rgba(0, 240, 255, 0.3),
@@ -288,7 +259,7 @@ body {
 
 /* Neon Button Glow */
 .neon-button {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 255, 0.1));
+  background: rgba(0, 240, 255, 0.1);
   border: 2px solid #00f0ff;
   color: #00f0ff;
   text-transform: uppercase;
@@ -305,7 +276,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), transparent);
+  background: rgba(0, 240, 255, 0.4);
   animation: button-sweep 2s infinite;
 }
 
@@ -371,10 +342,7 @@ body {
   }
   50% {
     transform: translate(-5%, -5%) scale(0.9);
-    background: 
-      radial-gradient(ellipse at 80% 20%, rgba(255, 0, 100, 0.2) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 80%, rgba(0, 255, 200, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, rgba(255, 255, 0, 0.08) 0%, transparent 60%);
+    background: #0a0a0f;
   }
   75% {
     transform: translate(5%, -5%) scale(1.05);
@@ -510,13 +478,13 @@ body {
 
 @keyframes holographic {
   0% {
-    background-position: 0% 50%;
+    opacity: 0.5;
   }
   50% {
-    background-position: 100% 50%;
+    opacity: 1;
   }
   100% {
-    background-position: 0% 50%;
+    opacity: 0.5;
   }
 }
 
@@ -634,8 +602,7 @@ body {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  border: 2px solid transparent;
-  border-image: linear-gradient(90deg, #00f0ff, #ff00ff, #00ff64, #ffff00, #00f0ff) 1;
+  border: 2px solid #00f0ff;
   animation: border-rotate 3s linear infinite;
   opacity: 0.5;
 }
