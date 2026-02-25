@@ -16,6 +16,22 @@ export default {
           pink: '#ff006e',
           blue: '#0066ff',
         },
+        naruto: {
+          orange: '#FF6B00',
+          'orange-light': '#FF9A3C',
+          'orange-dark': '#CC5500',
+          'orange-deep': '#E85D04',
+          black: '#1a1a2e',
+          'dark-blue': '#16213e',
+          'navy': '#0f3460',
+          red: '#e94560',
+          gold: '#FFD700',
+          'gold-dark': '#DAA520',
+          cream: '#FFF5E1',
+          'cream-dark': '#F5E6CC',
+          leaf: '#2D5016',
+          'leaf-light': '#4A7C23',
+        },
       },
       keyframes: {
         'neon-glow': {

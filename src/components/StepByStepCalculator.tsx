@@ -56,133 +56,133 @@ const StepByStepCalculator: React.FC<StepByStepCalculatorProps> = ({
   if (currentStep === 1) {
     return (
       <div className="text-center">
-                                <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-cyber-cyan animate-neon-glow-multi' : 'text-2xl font-bold mb-8 text-gray-800'}>Choose an Operation:</h3>
+                                <h3 className={theme === 'cyberpunk' ? 'text-2xl font-bold mb-8 text-cyber-cyan animate-neon-glow-multi' : theme === 'naruto' ? 'text-2xl font-bold mb-8 naruto-text' : 'text-2xl font-bold mb-8 text-gray-800'}>Choose an Operation:</h3>
         <div className="grid grid-cols-2 gap-4">
           <button
             onClick={() => {setOperation('add'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Addition (+)</span>
           </button>
                     <button
             onClick={() => {setOperation('subtract'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Subtraction (-)</span>
           </button>
           <button
             onClick={() => {setOperation('divide'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Division (/)</span>
           </button>
                     <button
             onClick={() => {setOperation('multiply'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Multiplication (*)</span>
           </button>
           <button
             onClick={() => {setOperation('percentage'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Percentage (%)</span>
           </button>
           <button
             onClick={() => {setOperation('sqrt'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Square Root (√)</span>
           </button>
                     <button
             onClick={() => {setOperation('round'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Round</span>
           </button>
           <button
             onClick={() => {setOperation('floor'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Floor</span>
           </button>
           <button
             onClick={() => {setOperation('ceil'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Ceil</span>
           </button>
           <button
             onClick={() => {setOperation('power'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Power (^)</span>
           </button>
           <button
             onClick={() => {setOperation('factorial'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Factorial (!)</span>
           </button>
           <button
             onClick={() => {setOperation('reciprocal'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Reciprocal (1/x)</span>
           </button>
                     <button
             onClick={() => {setOperation('sin'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Sine (sin)</span>
           </button>
           <button
             onClick={() => {setOperation('cos'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Cosine (cos)</span>
           </button>
           <button
             onClick={() => {setOperation('tan'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Tangent (tan)</span>
           </button>
           <button
             onClick={() => {setOperation('log'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
 
             <span className="relative z-10">Natural Log (ln)</span>
           </button>
           <button
             onClick={() => {setOperation('log10'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Log Base 10 (log10)</span>
           </button>
           <button
             onClick={() => {setOperation('exp'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Exponential (e^x)</span>
           </button>
           <button
             onClick={() => {setOperation('angleConversion'); setCurrentStep(2);}}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : theme === 'naruto' ? 'naruto-operation-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Angle Conversion</span>
           </button>
           <button
             onClick={resetCalculator}
-            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-purple-500 text-purple-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-purple-400 shadow-md shadow-purple-500/30 relative z-10' : 'bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-purple-500 text-purple-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-purple-400 shadow-md shadow-purple-500/30 relative z-10' : theme === 'naruto' ? 'naruto-back-btn font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 relative z-10' : 'bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
             <span className="relative z-10">Back to Menu</span>
           </button>
