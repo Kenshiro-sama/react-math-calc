@@ -73,14 +73,46 @@ const Calculator = () => {
         </>
       )}
       
-      {/* Naruto Visual Effects */}
+      {/* Naruto Visual Effects - CINEMATIC UPGRADE */}
       {theme === 'naruto' && (
         <>
-          {/* Naruto Accents */}
+          {/* Ninja Silhouette on Rooftop */}
+          <div className="ninja-silhouette"></div>
+          
+          {/* Smoke Transition Layer */}
+          <div className="smoke-transition"></div>
+          
+          {/* Japanese Brush Accents */}
           <div className="naruto-accent top-left"></div>
           <div className="naruto-accent top-right"></div>
           <div className="naruto-accent bottom-left"></div>
           <div className="naruto-accent bottom-right"></div>
+          
+          {/* Chakra Energy Particles (Blue/Red) */}
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          <div className="chakra-particle"></div>
+          
+          {/* Swirling Wind Particles */}
+          <div className="wind-particle"></div>
+          <div className="wind-particle"></div>
+          <div className="wind-particle"></div>
+          <div className="wind-particle"></div>
+          <div className="wind-particle"></div>
+          <div className="wind-particle"></div>
+          
+          {/* Floating Embers */}
+          <div className="ember-particle"></div>
+          <div className="ember-particle"></div>
+          <div className="ember-particle"></div>
+          <div className="ember-particle"></div>
+          <div className="ember-particle"></div>
+          <div className="ember-particle"></div>
         </>
       )}
       <div className="max-w-lg w-full">
@@ -196,7 +228,7 @@ const Calculator = () => {
             {theme === 'cyberpunk' && (
               <div className="absolute inset-0 bg-cyber-purple/5 animate-holographic"></div>
             )}
-            <div className={theme === 'cyberpunk' ? 'font-semibold text-xl text-purple-400 mb-4 relative z-10' : theme === 'naruto' ? 'font-semibold text-xl naruto-text mb-4 relative z-10' : 'font-semibold text-xl text-gray-800 mb-4'}>Memory: <span className={theme === 'cyberpunk' ? 'font-bold text-cyber-magenta animate-neon-glow-multi' : theme === 'naruto' ? 'font-bold text-orange-700' : 'font-bold text-indigo-600'}>{memory !== null ? memory : 'Empty'}</span></div>
+            <div className={theme === 'cyberpunk' ? 'font-semibold text-xl text-purple-400 mb-4 relative z-10' : theme === 'naruto' ? 'font-semibold text-xl naruto-text mb-4 relative z-10' : 'font-semibold text-xl text-gray-800 mb-4'}>Memory: <span className={theme === 'cyberpunk' ? 'font-bold text-cyber-magenta animate-neon-glow-multi' : theme === 'naruto' ? 'font-bold text-orange-300' : 'font-bold text-indigo-600'}>{memory !== null ? memory : 'Empty'}</span></div>
             <div className="grid grid-cols-5 gap-3">
 <button
   onClick={() => handleMemoryClear(setMemory, setError)}

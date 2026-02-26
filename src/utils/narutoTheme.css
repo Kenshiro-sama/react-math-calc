@@ -1,137 +1,409 @@
-/* Naruto Theme Styles */
+/* Naruto Theme - CINEMATIC ANIME UPGRADE */
 .naruto-bg {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  background-size: 400% 400%;
-  animation: naruto-gradient 15s ease infinite;
+  background: 
+    linear-gradient(135deg, #0a0000 0%, #1a0a0a 25%, #2a1515 50%, #1a0a0a 75%, #0a0000 100%),
+    radial-gradient(ellipse at 10% 90%, rgba(220, 20, 60, 0.25) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 10%, rgba(30, 144, 255, 0.25) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3Cpattern id='akatsuki' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M20,50 Q50,20 80,50 Q50,80 20,50' fill='%23dc143c' opacity='0.15'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23akatsuki)'/%3E%3C/svg%3E");
+  background-size: 400% 400%, auto, auto, 200px 200px;
+  animation: naruto-gradient 25s ease infinite, storm-clouds 60s linear infinite;
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes naruto-gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.naruto-accent {
+.naruto-bg::before {
+  content: '';
   position: absolute;
-  width: 100px;
-  height: 100px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50,10 L60,40 L90,40 L65,60 L75,90 L50,70 L25,90 L35,60 L10,40 L40,40 Z' fill='%23FF6B00'/%3E%3C/svg%3E");
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to bottom, rgba(10, 10, 40, 0.7) 0%, rgba(30, 10, 10, 0.9) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cpath d='M100,300 Q200,250 300,300 Q400,350 500,300 Q600,250 700,300 L700,600 L100,600 Z' fill='%23222' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: cover, cover;
+  animation: parallax-bg 20s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Hero Section - Ninja Silhouette */
+.ninja-silhouette {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  bottom: 5%;
+  right: 5%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M100,50 Q120,30 140,50 L140,80 Q130,100 140,120 L140,200 Q120,220 100,200 Q80,220 60,200 L60,120 Q70,100 60,80 L60,50 Q80,30 100,50 Z' fill='%23000000'/%3E%3Cpath d='M100,30 Q110,10 120,30 L120,50 Q110,40 100,50 Q90,40 80,50 L80,30 Q90,10 100,30 Z' fill='%23dc143c'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.3;
-  filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.5));
+  filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.7));
+  animation: ninja-float 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Chakra Particles - Blue and Red Energy */
+.chakra-particle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30, 144, 255, 0.9) 0%, rgba(220, 20, 60, 0.7) 50%, transparent 70%);
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.8), 0 0 25px rgba(220, 20, 60, 0.6);
+  animation: chakra-float 6s ease-in-out infinite, chakra-pulse 2s infinite alternate;
+}
+
+.chakra-particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s, 0s; }
+.chakra-particle:nth-child(2) { left: 25%; top: 60%; animation-delay: 1s, 0.3s; }
+.chakra-particle:nth-child(3) { left: 45%; top: 30%; animation-delay: 2s, 0.6s; }
+.chakra-particle:nth-child(4) { left: 65%; top: 70%; animation-delay: 0.5s, 0.9s; }
+.chakra-particle:nth-child(5) { left: 80%; top: 40%; animation-delay: 1.5s, 1.2s; }
+.chakra-particle:nth-child(6) { left: 90%; top: 80%; animation-delay: 2.5s, 1.5s; }
+.chakra-particle:nth-child(7) { left: 15%; top: 85%; animation-delay: 3s, 1.8s; }
+.chakra-particle:nth-child(8) { left: 70%; top: 15%; animation-delay: 0.8s, 2.1s; }
+
+/* Wind Particles */
+.wind-particle {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  border-radius: 2px;
+  animation: wind-drift 12s linear infinite;
+  filter: blur(1px);
+}
+
+.wind-particle:nth-child(1) { top: 15%; left: -40px; animation-delay: 0s; }
+.wind-particle:nth-child(2) { top: 35%; left: -40px; animation-delay: 2s; }
+.wind-particle:nth-child(3) { top: 55%; left: -40px; animation-delay: 4s; }
+.wind-particle:nth-child(4) { top: 75%; left: -40px; animation-delay: 6s; }
+.wind-particle:nth-child(5) { top: 25%; left: -40px; animation-delay: 8s; }
+.wind-particle:nth-child(6) { top: 65%; left: -40px; animation-delay: 10s; }
+
+/* Floating Embers */
+.ember-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.9) 0%, rgba(255, 69, 0, 0.7) 70%, transparent 90%);
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+  animation: ember-float 10s ease-in infinite;
+}
+
+.ember-particle:nth-child(1) { left: 5%; top: 90%; animation-delay: 0s; }
+.ember-particle:nth-child(2) { left: 20%; top: 95%; animation-delay: 1.5s; }
+.ember-particle:nth-child(3) { left: 40%; top: 92%; animation-delay: 3s; }
+.ember-particle:nth-child(4) { left: 60%; top: 94%; animation-delay: 4.5s; }
+.ember-particle:nth-child(5) { left: 80%; top: 91%; animation-delay: 6s; }
+.ember-particle:nth-child(6) { left: 95%; top: 93%; animation-delay: 7.5s; }
+
+/* Smoke Transitions */
+.smoke-transition {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(50, 50, 50, 0.1) 70%, transparent 100%);
+  animation: smoke-dissolve 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Japanese Brush Accents */
+.naruto-accent {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M30,100 Q50,30 100,30 Q150,30 170,100 Q150,170 100,170 Q50,170 30,100' fill='none' stroke='%23dc143c' stroke-width='4' stroke-linecap='round' opacity='0.3'/%3E%3Cpath d='M40,90 Q60,40 110,40 Q160,40 160,90 Q160,140 110,140 Q60,140 40,90' fill='none' stroke='%231e90ff' stroke-width='3' stroke-dasharray='10,5' opacity='0.2'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 20px rgba(220, 20, 60, 0.5));
 }
 
 .naruto-accent.top-left {
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
   transform: rotate(-15deg);
 }
 
 .naruto-accent.top-right {
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   transform: rotate(15deg);
 }
 
 .naruto-accent.bottom-left {
-  bottom: 20px;
-  left: 20px;
+  bottom: 10px;
+  left: 10px;
   transform: rotate(15deg);
 }
 
 .naruto-accent.bottom-right {
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   transform: rotate(-15deg);
 }
 
-.naruto-text {
-  color: #FFD700;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 107, 0, 0.5);
+/* Scroll-style UI Panels */
+.naruto-panel {
+  background: linear-gradient(135deg, rgba(255, 240, 220, 0.95) 0%, rgba(255, 225, 200, 0.95) 100%),
+              url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='%23a0522d' stroke-width='2' stroke-dasharray='5,5' opacity='0.3'/%3E%3C/svg%3E");
+  border: 3px solid #8b4513;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='%23dc143c' stroke-width='4'/%3E%3C/svg%3E") 3 stretch;
+  box-shadow: 0 0 40px rgba(220, 20, 60, 0.4), inset 0 0 30px rgba(139, 69, 19, 0.2);
+  position: relative;
+  z-index: 10;
 }
 
+.naruto-panel::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid rgba(160, 82, 45, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Text Styles */
+.naruto-text {
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.9), 0 0 25px rgba(220, 20, 60, 0.8), 0 0 35px rgba(30, 144, 255, 0.6);
+  font-weight: 800;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.naruto-title {
+  text-shadow: 0 0 15px #dc143c, 0 0 25px #ff6b00, 0 0 35px #1e90ff;
+  animation: naruto-glow 1.5s ease-in-out infinite alternate;
+  color: #ff6b00;
+  font-weight: 900;
+  position: relative;
+  display: inline-block;
+}
+
+.naruto-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff6b00, transparent);
+  animation: title-underline 2s infinite;
+}
+
+.naruto-description {
+  color: #FFE082;
+  text-shadow: 0 0 8px rgba(255, 224, 130, 0.8), 0 0 15px rgba(255, 107, 0, 0.6);
+  font-weight: 600;
+}
+
+/* Buttons with Jutsu Glow */
 .naruto-button {
-  background: linear-gradient(135deg, #FF6B00 0%, #FF9A3C 50%, #FF6B00 100%);
-  color: #1a1a2e;
-  border: 2px solid #FFD700;
-  box-shadow: 0 0 20px rgba(255, 107, 0, 0.5), inset 0 0 20px rgba(255, 215, 0, 0.2);
+  background: linear-gradient(135deg, #dc143c 0%, #ff4500 50%, #dc143c 100%);
+  color: #fff;
+  border: 2px solid #1e90ff;
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.7), inset 0 0 20px rgba(30, 144, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.naruto-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
+  animation: jutsu-pulse 3s infinite;
 }
 
 .naruto-button:hover {
-  background: linear-gradient(135deg, #E85D04 0%, #FF6B00 50%, #E85D04 100%);
-  box-shadow: 0 0 30px rgba(255, 107, 0, 0.8), inset 0 0 30px rgba(255, 215, 0, 0.3);
+  background: linear-gradient(135deg, #c1121f 0%, #e85d04 50%, #c1121f 100%);
+  box-shadow: 0 0 40px rgba(220, 20, 60, 0.9), 0 0 60px rgba(30, 144, 255, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.4);
+  transform: scale(1.08);
+}
+
+.naruto-operation-btn {
+  background: linear-gradient(135deg, #ff6b00 0%, #ff9a3c 100%);
+  color: #1a1a2e;
+  border: 2px solid #1e90ff;
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+}
+
+.naruto-operation-btn:hover {
+  background: linear-gradient(135deg, #e85d04 0%, #ff6b00 100%);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.8), 0 0 30px rgba(30, 144, 255, 0.4);
   transform: scale(1.05);
 }
 
-.naruto-panel {
-  background: linear-gradient(135deg, rgba(255, 245, 225, 0.9) 0%, rgba(245, 230, 204, 0.9) 100%);
-  border: 2px solid #FF6B00;
-  box-shadow: 0 0 30px rgba(255, 107, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.1);
+.naruto-back-btn {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2a1515 100%);
+  color: #FFD700;
+  border: 2px solid #dc143c;
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.5);
 }
 
-.naruto-memory-panel {
-  background: linear-gradient(135deg, rgba(42, 80, 22, 0.8) 0%, rgba(74, 124, 35, 0.8) 100%);
-  border: 2px solid #2D5016;
-  box-shadow: 0 0 20px rgba(45, 80, 22, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.1);
+.naruto-back-btn:hover {
+  background: linear-gradient(135deg, #2a1515 0%, #1a1a2e 100%);
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.8), 0 0 35px rgba(30, 144, 255, 0.3);
+  transform: scale(1.05);
 }
 
 .naruto-btn {
   background: linear-gradient(135deg, #2D5016 0%, #4A7C23 50%, #2D5016 100%);
   color: #FFD700;
-  border: 2px solid #FFD700;
-  box-shadow: 0 0 15px rgba(45, 80, 22, 0.6), inset 0 0 15px rgba(255, 215, 0, 0.2);
+  border: 2px solid #1e90ff;
+  box-shadow: 0 0 20px rgba(45, 80, 22, 0.6), inset 0 0 20px rgba(30, 144, 255, 0.2);
 }
 
 .naruto-btn:hover {
   background: linear-gradient(135deg, #4A7C23 0%, #2D5016 50%, #4A7C23 100%);
-  box-shadow: 0 0 25px rgba(45, 80, 22, 0.8), inset 0 0 25px rgba(255, 215, 0, 0.3);
-}
-
-.naruto-title {
-  text-shadow: 0 0 10px #FF6B00, 0 0 20px #FF6B00, 0 0 30px #FF6B00;
-  animation: naruto-glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes naruto-glow {
-  from { text-shadow: 0 0 10px #FF6B00, 0 0 20px #FF6B00, 0 0 30px #FF6B00; }
-  to { text-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700, 0 0 35px #FFD700; }
+  box-shadow: 0 0 30px rgba(45, 80, 22, 0.8), inset 0 0 30px rgba(30, 144, 255, 0.3);
 }
 
 .naruto-input {
-  border: 2px solid #FF6B00;
-  background: rgba(255, 245, 225, 0.9);
+  border: 2px solid #dc143c;
+  background: rgba(255, 245, 230, 0.95);
   color: #1a1a2e;
-  box-shadow: 0 0 10px rgba(255, 107, 0, 0.3), inset 0 0 10px rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.3), inset 0 0 15px rgba(30, 144, 255, 0.1);
 }
 
 .naruto-input:focus {
-  border-color: #FFD700;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), inset 0 0 20px rgba(255, 107, 0, 0.2);
+  border-color: #1e90ff;
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.5), inset 0 0 25px rgba(220, 20, 60, 0.2);
 }
 
-.naruto-operation-btn {
-  background: linear-gradient(135deg, #FF6B00 0%, #FF9A3C 100%);
-  color: #1a1a2e;
-  border: 2px solid #FFD700;
-  box-shadow: 0 0 10px rgba(255, 107, 0, 0.4);
+.naruto-memory-panel {
+  background: linear-gradient(135deg, rgba(42, 80, 22, 0.9) 0%, rgba(74, 124, 35, 0.9) 100%),
+              url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='%232D5016' stroke-width='2' stroke-dasharray='5,5' opacity='0.3'/%3E%3C/svg%3E");
+  border: 3px solid #2D5016;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='%23FFD700' stroke-width='4'/%3E%3C/svg%3E") 3 stretch;
+  box-shadow: 0 0 25px rgba(45, 80, 22, 0.5), inset 0 0 25px rgba(255, 215, 0, 0.1);
 }
 
-.naruto-operation-btn:hover {
-  background: linear-gradient(135deg, #E85D04 0%, #FF6B00 100%);
-  box-shadow: 0 0 15px rgba(255, 107, 0, 0.7);
-  transform: scale(1.05);
+.naruto-memory-panel .naruto-text {
+  color: #FFED4E;
+  text-shadow: 0 0 10px rgba(255, 237, 78, 0.9), 0 0 20px rgba(255, 107, 0, 0.8);
 }
 
-.naruto-back-btn {
-  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-  color: #FFD700;
-  border: 2px solid #FF6B00;
-  box-shadow: 0 0 10px rgba(255, 107, 0, 0.4);
+/* ANIMATIONS */
+@keyframes naruto-gradient {
+  0% { background-position: 0% 50%, 0 0, 0 0, 0 0; }
+  50% { background-position: 100% 50%, 100px 100px, -100px -100px, 50px 50px; }
+  100% { background-position: 0% 50%, 0 0, 0 0, 0 0; }
 }
 
-.naruto-back-btn:hover {
-  background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
-  box-shadow: 0 0 15px rgba(255, 107, 0, 0.7);
-  transform: scale(1.05);
+@keyframes storm-clouds {
+  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+  100% { background-position: 100px 50px, -50px 100px, 150px -50px, 200px 0; }
+}
+
+@keyframes parallax-bg {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-20px) scale(1.02); }
+}
+
+@keyframes chakra-float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg) scale(1); 
+    opacity: 0.7;
+  }
+  33% { 
+    transform: translateY(-40px) rotate(120deg) scale(1.3); 
+    opacity: 1;
+  }
+  66% { 
+    transform: translateY(-20px) rotate(240deg) scale(0.9); 
+    opacity: 0.8;
+  }
+}
+
+@keyframes chakra-pulse {
+  0% { box-shadow: 0 0 15px rgba(30, 144, 255, 0.8), 0 0 25px rgba(220, 20, 60, 0.6); }
+  100% { box-shadow: 0 0 25px rgba(30, 144, 255, 1), 0 0 35px rgba(220, 20, 60, 0.9); }
+}
+
+@keyframes wind-drift {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 40px)) translateY(-20px); opacity: 0; }
+}
+
+@keyframes ember-float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+
+@keyframes smoke-dissolve {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.1); }
+}
+
+@keyframes ninja-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-10px) translateX(5px); }
+  75% { transform: translateY(5px) translateX(-5px); }
+}
+
+@keyframes naruto-glow {
+  from { 
+    text-shadow: 0 0 15px #dc143c, 0 0 25px #ff6b00, 0 0 35px #1e90ff;
+  }
+  to { 
+    text-shadow: 0 0 20px #1e90ff, 0 0 30px #ff6b00, 0 0 40px #dc143c;
+  }
+}
+
+@keyframes title-underline {
+  0%, 100% { opacity: 0.5; width: 0%; left: 50%; }
+  50% { opacity: 1; width: 100%; left: 0; }
+}
+
+@keyframes jutsu-pulse {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Energy Pulse on Hover */
+@keyframes energy-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(30, 144, 255, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(30, 144, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(30, 144, 255, 0); }
+}
+
+.hover-energy-pulse:hover {
+  animation: energy-pulse 1s;
+}
+
+/* Transition Effects */
+.smoke-transition-enter {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+}
+
+.smoke-transition-enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.smoke-transition-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.smoke-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.9) translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
 }
