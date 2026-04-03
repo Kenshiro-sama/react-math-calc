@@ -28,9 +28,14 @@ const ExpressionCalculator: React.FC<ExpressionCalculatorProps> = ({
             value={expression}
             onChange={(e) => setExpression(e.target.value)}
             className={theme === 'cyberpunk' ? 'w-full px-4 py-3 border-2 border-cyber-purple bg-gray-900/80 text-cyber-purple rounded-xl focus:ring-2 focus:ring-cyber-cyan focus:border-cyber-cyan shadow-lg shadow-cyber-purple/20 backdrop-blur-sm transition-all duration-300 placeholder-cyber-purple/50' : 'w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'}
-            placeholder="e.g., 10 / 2 + (3 * 4) or sin 90"
+            placeholder="e.g., 10 / 2 + (3 * 4) or sin 90 or abs -5 or cbrt 27 or pi"
             onKeyPress={(e) => e.key === 'Enter' && handleExpressionCalculation()}
           />
+          <div className={theme === 'cyberpunk' ? 'text-sm text-cyber-cyan mt-2 text-left' : 'text-sm text-gray-600 mt-2 text-left'}>
+            <p>Supported unary operations: sqrt, round, floor, ceil, factorial, reciprocal, sin, cos, tan, log, log10, exp, deg2rad, rad2deg, abs, cbrt</p>
+            <p>Supported binary operators: +, -, *, /, %, ^ (power)</p>
+            <p>Scientific constants: pi (π), e</p>
+          </div>
         </div>
         <div className="flex space-x-4 mt-6">
           <button

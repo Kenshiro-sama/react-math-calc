@@ -8,3 +8,10 @@ export const divide = (x: number, y: number): number | string => {
     return "Error: Cannot divide by zero!";
   }
 };
+export const modulus = (x: number, y: number): number | string => {
+  if (y !== 0) {
+    return x % y;
+  } else {
+    return "Error: Cannot divide by zero!";
+  }
+};

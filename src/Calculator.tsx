@@ -86,7 +86,7 @@ const Calculator = () => {
               <span className="relative z-10">Toggle {theme === 'default' ? 'Cyberpunk' : 'Default'} Theme</span>
             </button>
             <div className={theme === 'cyberpunk' ? 'border-b-4 border-green-500 w-20 mx-auto mb-6 rounded-full animate-border-pulse-multi shadow-lg shadow-green-500/50' : 'border-b-4 border-indigo-500 w-20 mx-auto mb-6 rounded-full'}></div>
-            <p className={theme === 'cyberpunk' ? 'text-green-300 text-sm leading-relaxed' : 'text-gray-600 text-sm leading-relaxed'}>Perform a wide range of calculations: basic arithmetic, percentages, square roots, powers, rounding, floor, ceil, factorials, reciprocals, trigonometric functions (sin, cos, tan), logarithms (ln, log10), exponentials, and angle conversions.</p>
+                        <p className={theme === 'cyberpunk' ? 'text-green-300 text-sm leading-relaxed' : 'text-gray-600 text-sm leading-relaxed'}>Perform a wide range of calculations: basic arithmetic, percentages, square roots, cube roots, powers, rounding, floor, ceil, factorials, reciprocals, trigonometric functions (sin, cos, tan), logarithms (ln, log10), exponentials, angle conversions, modulus, absolute value, and scientific constants (π, e).</p>
           </div>
 
           {/* Main Content */}

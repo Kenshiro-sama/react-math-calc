@@ -61,3 +61,7 @@ export const exponential = (x: number): number => Math.exp(x);
 export const degToRad = (deg: number): number => deg * (Math.PI / 180);
 
 export const radToDeg = (rad: number): number => rad * (180 / Math.PI);
+
+export const absolute = (x: number): number => Math.abs(x);
+
+export const cubeRoot = (x: number): number => Math.cbrt(x);

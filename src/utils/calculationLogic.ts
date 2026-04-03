@@ -1,5 +1,5 @@
-import { add, subtract, multiply, divide } from './mathOperations';
-import { percentage, squareRoot, sin, factorial, power, round, floor, ceil, cos, tan, reciprocal, log, log10, exponential, degToRad, radToDeg } from './advancedMathOperations';
+import { add, subtract, multiply, divide, modulus } from './mathOperations';
+import { percentage, squareRoot, sin, factorial, power, round, floor, ceil, cos, tan, reciprocal, log, log10, exponential, degToRad, radToDeg, absolute, cubeRoot } from './advancedMathOperations';
 
 interface CalculationState {
   num1: string;
@@ -24,7 +24,7 @@ export const handleStepByStepCalculation = (
   const number1 = parseFloat(num1);
   const number2 = parseFloat(num2);
 
-  if (['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10', 'exp', 'angleConversion'].includes(operation)) {
+  if (['sqrt', 'round', 'floor', 'ceil', 'reciprocal', 'sin', 'cos', 'tan', 'factorial', 'log', 'log10', 'exp', 'angleConversion', 'absolute', 'cubeRoot'].includes(operation)) {
     if (isNaN(number1)) {
       setError(`Please enter a valid number for ${operation}!`);
       return;
@@ -51,6 +51,10 @@ export const handleStepByStepCalculation = (
     case 'divide':
       calcResult = divide(number1, number2);
       operationSymbol = '/';
+      break;
+    case 'modulus':
+      calcResult = modulus(number1, number2);
+      operationSymbol = '%';
       break;
     case 'percentage':
       operationSymbol = '%';
@@ -121,12 +125,20 @@ export const handleStepByStepCalculation = (
         operationSymbol = 'rad→deg';
       }
       break;
+    case 'absolute':
+      calcResult = absolute(number1);
+      operationSymbol = 'abs';
+      break;
+    case 'cubeRoot':
+      calcResult = cubeRoot(number1);
+      operationSymbol = '∛';
+      break;
     default:
       setError('Invalid operation!');
       return;
   }
 
-  if (['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp', 'angleConversion'].includes(operation)) {
+  if (['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp', 'angleConversion', 'absolute', 'cubeRoot'].includes(operation)) {
     setResult(`${operationSymbol}(${number1}) = ${calcResult}`);
   } else {
     setResult(`${number1} ${operationSymbol} ${number2} = ${calcResult}`);
@@ -141,9 +153,22 @@ export const handleExpressionCalculation = (
   const { expression } = state;
   const { setResult, setError } = setters;
 
+  // Handle scientific constants
+  const trimmedExpression = expression.trim().toLowerCase();
+  if (trimmedExpression === 'pi' || trimmedExpression === 'π') {
+    setResult(`π = ${Math.PI}`);
+    setError('');
+    return;
+  }
+  if (trimmedExpression === 'e') {
+    setResult(`e = ${Math.E}`);
+    setError('');
+    return;
+  }
+
   const parts = expression.split(/\s+/);
 
-  if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp', 'deg2rad', 'rad2deg'].includes(parts[0].toLowerCase())) {
+  if (parts.length === 2 && ['sqrt', 'round', 'floor', 'ceil', 'factorial', 'reciprocal', 'sin', 'cos', 'tan', 'log', 'log10', 'exp', 'deg2rad', 'rad2deg', 'absolute', 'abs', 'cubeRoot', 'cbrt'].includes(parts[0].toLowerCase())) {
     const operation = parts[0].toLowerCase();
     const num = parseFloat(parts[1]);
     if (isNaN(num)) {
@@ -209,6 +234,16 @@ export const handleExpressionCalculation = (
         calcResult = radToDeg(num);
         operationSymbol = 'rad→deg';
         break;
+      case 'absolute':
+      case 'abs':
+        calcResult = absolute(num);
+        operationSymbol = 'abs';
+        break;
+      case 'cuberoot':
+      case 'cbrt':
+        calcResult = cubeRoot(num);
+        operationSymbol = '∛';
+        break;
       default:
         setError('Invalid unary operation!');
         return;
@@ -217,7 +252,7 @@ export const handleExpressionCalculation = (
     setError('');
     return;
   } else if (parts.length !== 3) {
-    setError('Please enter in format: number operator number (e.g., 5 + 3), or a unary operation (e.g., sqrt 9, reciprocal 5)');
+    setError('Please enter in format: number operator number (e.g., 5 + 3), or a unary operation (e.g., sqrt 9, reciprocal 5, abs -5, cbrt 27), or a constant (pi, e)');
     return;
   }
 
@@ -242,7 +277,9 @@ export const handleExpressionCalculation = (
       calcResult = divide(num1, num2);
       break;
     case '%':
-      calcResult = percentage(num1, num2);
+      // Check if this is modulus or percentage based on context
+      // If both numbers are provided, treat as modulus
+      calcResult = modulus(num1, num2);
       break;
     case '*':
       calcResult = multiply(num1, num2);

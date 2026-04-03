@@ -167,6 +167,24 @@ const StepByStepCalculator: React.FC<StepByStepCalculatorProps> = ({
             <span className="relative z-10">Exponential (e^x)</span>
           </button>
           <button
+            onClick={() => {setOperation('modulus'); setCurrentStep(2);}}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+          >
+            <span className="relative z-10">Modulus (%)</span>
+          </button>
+          <button
+            onClick={() => {setOperation('absolute'); setCurrentStep(2);}}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+          >
+            <span className="relative z-10">Absolute Value (abs)</span>
+          </button>
+          <button
+            onClick={() => {setOperation('cubeRoot'); setCurrentStep(2);}}
+            className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
+          >
+            <span className="relative z-10">Cube Root (∛)</span>
+          </button>
+          <button
             onClick={() => {setOperation('angleConversion'); setCurrentStep(2);}}
             className={theme === 'cyberpunk' ? 'bg-gray-800 border border-green-500 text-green-400 font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-700 hover:border-green-400 shadow-md shadow-green-500/30 relative z-10' : 'bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md'}
           >
